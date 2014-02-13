@@ -11,6 +11,7 @@
 #import "MWPhoto.h"
 #import "MWPhotoProtocol.h"
 #import "MWCaptionView.h"
+#import "PSTCollectionView.h"
 
 // Debug Logging
 #if 0 // Set to 1 to enable debug logging
@@ -34,6 +35,10 @@
 - (void)photoBrowser:(MWPhotoBrowser *)photoBrowser actionButtonPressedForPhotoAtIndex:(NSUInteger)index;
 - (BOOL)photoBrowser:(MWPhotoBrowser *)photoBrowser isPhotoSelectedAtIndex:(NSUInteger)index;
 - (void)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index selectedChanged:(BOOL)selected;
+- (void)rightBarButtonItemPressed:(id)sender;
+- (void)leftBarButtonItemPressed:(id)sender;
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath;
+- (NSInteger)numberOfSectionsInCollectionView:(PSTCollectionView *)collectionView;
 
 @end
 
@@ -48,6 +53,9 @@
 @property (nonatomic) BOOL enableGrid;
 @property (nonatomic) BOOL startOnGrid;
 @property (nonatomic, readonly) NSUInteger currentIndex;
+
+@property (nonatomic) NSString *sectionHeaderReuseIdentifier;
+@property id headerClass;
 
 // Init
 - (id)initWithPhotos:(NSArray *)photosArray  __attribute__((deprecated("Use initWithDelegate: instead"))); // Depreciated
